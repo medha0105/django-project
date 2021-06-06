@@ -12,7 +12,7 @@ class Customer(models.Model):
     )
     name = models.CharField(max_length=200,null=True)
     email = models.CharField(max_length=100,unique=True,null=True)
-    date_created = models.DateTimeField(auto_now_add)
+    date_created = models.DateTimeField(auto_now_add=True)
     phone = models.CharField(max_length=10, null=True)
     weight = models.DecimalField()
     height = models.DecimalField()
