@@ -8,6 +8,8 @@ def about(request):
 def home(request):
     return render(request,'cc/home.html')
 
+def login(request):
+    return render(request,'cc/login.html')
     
 def customerDetails(request):
     form = CustomerForm()

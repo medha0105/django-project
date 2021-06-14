@@ -10,6 +10,7 @@
     top:100px;
     right: 25px;
     font-size: 18px;
+    display:flex;
     width: 500px;
     margin-right: 200px;
 }

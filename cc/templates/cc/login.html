@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Calorie Counter</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="{% static '/css/main.css' %}">
+    </head>
+    <div class="row details">
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-header">
+                Don't have an account?<a href="#">Register here</a>
+                </div>
+                <div class="card-body">
+                <form>
+
+                <p class="card-text"><input type="text" placeholder="Email"></p>
+                <p class="card-text"><input type="text" placeholder="Password"></p>
+                </form>
+                <br>
+                <a href="#" class="btn btn-primary">Login</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</html>
