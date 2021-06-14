@@ -1,13 +1,46 @@
+{%  extends 'cc/home.html' %}
+{% load static %}
+
 {% block content %}
-        <form action="" method="POST">
-            {% csrf_token %}
-            {% for field in form %}
-            <p>{{field.label}} :</p>
-            
-            <p>{{field}}</p>
-            <br>
-            {% endfor %}
-            <br>
-            <input type="submit" name="Submit">
-        </form>
+    <style>
+        .row {
+        height: 80vh;
+        width: 150vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        }
+
+        .card-body {
+            box-shadow: 0 0 5px #000;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        body{
+            background-color: rgb(214, 235, 255);
+        }
+    </style>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card card-body" style="width: 18rem; padding: 15px;">
+                <h4 class="card-title">Enter your details: </h4>
+                <form action="" method="POST">
+                    {% csrf_token %}
+
+                    {% for element in form %}
+                    <div class="form-group">
+                        <b>{{element.label}}:</b>
+                        {{element}}
+                        <br>
+                    </div>
+                    {% endfor %}
+                    <input type="submit" value="Submit" class="btn btn-primary">
+                </form>
+            </div>
+        </div>
+    </div>
+
+
 {% endblock %}
