@@ -14,8 +14,8 @@ class Customer(models.Model):
     email = models.CharField(max_length=100,unique=True,null=True)
     date_created = models.DateTimeField(auto_now_add=True)
     phone = models.CharField(max_length=10, null=True)
-    weight = models.DecimalField(max_digits=5,decimal_places=3,null=True)
-    height = models.DecimalField(max_digits=5,decimal_places=3,null=True)
+    weight = models.DecimalField(max_digits=10,decimal_places=3,null=True)
+    height = models.DecimalField(max_digits=10,decimal_places=3,null=True)
     gender = models.CharField(max_length=50, choices=GENDER)
     category = models.CharField(max_length=50, choices=CATEGORY)
 
