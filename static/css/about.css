@@ -1,0 +1,31 @@
+
+.msg{
+    font-size: 18px;
+    color: black;
+    margin-right: 20px;
+}
+
+.topright {
+    position: absolute;
+    top:100px;
+    right: 25px;
+    font-size: 18px;
+    width: 500px;
+    margin-right: 200px;
+}
+
+.about{
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(128, 128, 128, 0.177);
+    
+    color: black;
+}
+
+
+.card-body {
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.564);
+    /* border-radius: 20px; */
+    cursor: pointer;
+    font-family: sans-serif;
+}
