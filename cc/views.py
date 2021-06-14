@@ -5,6 +5,7 @@ from .forms import CustomerForm
 
 def home(request):
     return render(request,'cc/home.html')
+
     
 def customerDetails(request):
     form = CustomerForm()
