@@ -2,6 +2,8 @@ from django.shortcuts import render,redirect
 from .models import *
 from .forms import CustomerForm
 
+def about(request):
+    return render(request, 'cc/about.html')
 
 def home(request):
     return render(request,'cc/home.html')
