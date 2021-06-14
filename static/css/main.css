@@ -1,0 +1,27 @@
+.details {
+    height: 80vh;
+    width: 150vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-title{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-family: sans-serif;
+}
+
+.card-body {
+    box-shadow: 0 0 5px #000;
+    border-radius: 20px;
+    cursor: pointer;
+    align-items: center;
+    width: 23rem; 
+    height: 21rem;
+    font-family: sans-serif;
+}
+
+body{
+    background-color: rgb(214, 235, 255);
+}
