@@ -43,6 +43,13 @@
         border: 0 !important;
         border-radius: 0.25rem 0 0 0.25rem !important;
     }
+
+    #messages{
+        background-color: grey;
+        color: #fff;
+        padding: 10px;
+        margin-top: 10px;
+    }
     </style>
 
 </head>
@@ -74,8 +81,13 @@
                         <div class="d-flex justify-content-center mt-3 login_container">
                             <input class="btn login_btn" type="submit" value="Login">
                         </div>
+
+                        {% for message in messages %}
+                            <p id="messages">{{message}}</p>
+                        {% endfor %}
+
                         <div class="d-flex justify-content-center links">
-                            Don't have an account? <a href="#" class="ml-2">Sign Up</a>
+                            Don't have an account? <a href="{% url 'register' %}" class="ml-2">Sign Up</a>
                         </div>
                     </form>
                 </div>

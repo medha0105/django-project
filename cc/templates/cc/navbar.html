@@ -13,4 +13,6 @@
           <a class="nav-link" href="#">Link</a>
         </li>
     </div>
+    <span class="msg" style="font-size: 18px; color: whitesmoke; margin-right: 20px;">Hello {{request.user}}!</span>
+    <span><a class="msg" href="{% url 'logout' %}" style="font-size: 18px; color: whitesmoke; margin-right: 20px;">Logout</a></span>
   </nav>
