@@ -32,12 +32,13 @@
 }
 
 h1 {
+    font-size: 5pc;
     font-family: sans-serif;
-    color: rgb(15, 2, 20);
+    color: rgb(144, 247, 76);
     align-content: center;
     text-align: center;
 }
 
 p {
-    color: gray;
+    color: rgb(19, 17, 17);
 }
