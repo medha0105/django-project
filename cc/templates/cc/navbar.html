@@ -10,7 +10,7 @@
           <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
+          <a class="nav-link" href="{% url 'customer_details' request.user.customer.id %}">Link</a>
         </li>
     </div>
     <span class="msg" style="font-size: 18px; color: whitesmoke; margin-right: 20px;">Hello {{request.user}}!</span>
