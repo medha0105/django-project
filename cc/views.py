@@ -46,6 +46,7 @@ def logoutUser(request):
     logout(request)
     return redirect('login')
     
+
 def customerDetails(request, pk):
     customer = Customer.objects.get(id=pk)
     form = CustomerForm(instance=customer)
