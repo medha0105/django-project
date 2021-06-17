@@ -21,6 +21,9 @@ class Customer(models.Model):
     gender = models.CharField(max_length=50, choices=GENDER)
     category = models.CharField(max_length=50, choices=CATEGORY)
 
+    def __str__(self):
+        return self.name
+
 
 class Food(models.Model):
     CATEGORY = (
