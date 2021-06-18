@@ -4,3 +4,6 @@ from django.apps import AppConfig
 class CcConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
     name = 'cc'
+
+    def ready(self):
+        import cc.signals
