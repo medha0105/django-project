@@ -15,14 +15,14 @@ class Customer(models.Model):
     name = models.CharField(max_length=200,null=True)
     email = models.CharField(max_length=100,unique=True,null=True)
     date_created = models.DateTimeField(auto_now_add=True)
-    phone = models.CharField(max_length=10, null=True)
+    age = models.IntegerField(null=True)
     weight = models.DecimalField(max_digits=5,decimal_places=2,null=True)
     height = models.DecimalField(max_digits=5,decimal_places=2,null=True)
     gender = models.CharField(max_length=50, choices=GENDER)
     category = models.CharField(max_length=50, choices=CATEGORY)
 
-    # def __str__(self):
-    #     return self.name
+    def __str__(self):
+        return self.name
 
 
 class Food(models.Model):

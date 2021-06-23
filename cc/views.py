@@ -4,12 +4,16 @@ from django.contrib.auth.models import Group
 from django.contrib import messages
 from .models import *
 from .forms import *
+from .caloriecalc import dummycalc
 
 def about(request):
     return render(request, 'cc/about.html')
 
 def home(request, pk):
-    return render(request,'cc/home.html')
+    #logic for daily calorie intake
+    calorieCount = dummycalc(pk)
+    context = {'calorieCount':calorieCount}
+    return render(request,'cc/home.html',context)
 
 def registerPage(request):
     form = CreateUserForm()
@@ -17,9 +21,7 @@ def registerPage(request):
         form = CreateUserForm(request.POST)
         if form.is_valid():
             user = form.save()
-            
-            print(request.user.id)
-            print(user.id)
+        
             login(request, user)
             # messages.success(request, "Account created successully for " + username)
             return redirect('customer_details', request.user.customer.id)
@@ -34,8 +36,6 @@ def loginPage(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            print(request.user.customer.id)
-            print(user.id)
             return redirect('home', request.user.customer.id)
         else:
             messages.info(request, "Username or password is incorrect")

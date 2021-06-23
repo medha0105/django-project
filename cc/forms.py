@@ -7,7 +7,7 @@ from .models import Customer
 class CustomerForm(ModelForm):
     class Meta:
         model = Customer
-        fields = ['weight','height','gender','category']
+        fields = ['weight','height','age','gender','category']
 
 class CreateUserForm(UserCreationForm):
     class Meta:
