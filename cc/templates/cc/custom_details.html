@@ -1,11 +1,11 @@
-{%  extends 'cc/home.html' %}
+{%  extends 'cc/main.html' %}
 {% load static %}
 
 {% block content %}
 
     <div class="row details">
         <div class="col-md-6">
-            <div class="card card-body">
+            <div class="card card-body" style="height: 24rem;">
                 <h4 class="card-title">Enter your details: </h4>
                 <form action="" method="POST">
                     {% csrf_token %}
@@ -13,7 +13,7 @@
                     {% for element in form %}
                     <div class="form-group">
                         <div class="row" style="padding: 0px 13px 5px 0px;">
-                            <div class="col-sm-4">
+                            <div class="col-sm-4">                                
                                 {{element.label}}:
                             </div>
                             <div class="col-sm-4">
