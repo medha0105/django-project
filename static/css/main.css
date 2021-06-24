@@ -1,5 +1,5 @@
 .details {
-    height: 120vh;
+    height: 100vh;
     width: 150vw;
     display: flex;
     justify-content: center;
@@ -7,13 +7,13 @@
     padding-bottom: 50px;
 }
 
-.card-title{
+.details-title{
     padding-top: 10px;
     padding-bottom: 10px;
     font-family: sans-serif;
 }
 
-.card-body {
+.details-body {
     box-shadow: 0 0 5px #000;
     border-radius: 20px;
     cursor: pointer;
@@ -27,7 +27,55 @@ body{
     background-color: rgb(214, 235, 255);
 }
 
+<<<<<<< HEAD
 .food_form{
     height: 150vh!important;
     
+=======
+#logo{
+    height: 4%;
+    width: 4% ;
+}
+
+.status{
+    padding-top: 15px;
+}
+
+#calorie-count{
+    background-color:rgba(0, 0, 0, 0.797);
+}
+
+.calorie-header{
+    background-color:black!important; 
+}
+
+.text-data{
+    font-family: sans-serif;
+    font-size: 20px;
+    float:left;
+}
+
+.food-header1{
+    background-color: #4cb4c7;
+}
+
+.food-header2{
+    background-color: #7CD1C0;
+}
+
+.food-header3{
+    background-color: #4cb4c7;
+}
+
+.food-header4{
+    background-color: #7CD1C0;
+}
+
+#add-link {
+    color: white;
+    text-decoration: none;
+    font-size: 30px;
+    text-shadow: 1px 1px #3b5581;
+    float:right;
+>>>>>>> 67743afd2e104fb49a77fa308d410b9021c0c6ec
 }
