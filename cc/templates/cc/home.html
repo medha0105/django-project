@@ -4,4 +4,5 @@
 
 <h1>{{calorieCount}}</h1>
 <p>Home page</p>
+<button><a href="{% url 'food_details' request.user.customer.id%}">Add Food</a></button>
 {% endblock %}

@@ -59,3 +59,14 @@ def customerDetails(request, pk):
     return render(request,'cc/custom_details.html',context)
 
 
+def foodDetails(request,pk):
+    customer = Customer.objects.get(id=pk)
+    form = FoodForm(instance=customer)
+    if request.method == "POST":
+        form = FoodForm(request.POST, instance=customer)   #request.POST has all data submitted to customer_details url
+        if form.is_valid():                 #is_valid is a method/function to check if form values are valid
+            form.save()
+            return redirect('home', request.user.customer.id)
+
+    context = {'form':form}
+    return render(request,'cc/foodform.html',context)

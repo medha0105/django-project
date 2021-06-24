@@ -25,5 +25,5 @@ def dummycalc(pk):
     else:
         Idealcalorie *= 1.4
 
-    return Idealcalorie
+    return round(Idealcalorie)
    
