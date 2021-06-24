@@ -2,6 +2,107 @@
 {% load static %}
 {% block content %}
 
-<h1>{{calorieCount}}</h1>
-<p>Home page</p>
+<div class="container">
+    <div class="row status">
+        <div class="col">
+            <div class="col-md">
+                <div class="card text-center text-white mb-3" id="calorie-count">
+                    <div class="card-header calorie-header" >
+                        <h5 class="card-title text-data">Calorie Count</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md text-white mb-3 text-data">
+                                Total Calories
+                            </div>
+                            <div class="col-md text-white mb-3 text-data">
+                                Calories Consumed
+                            </div>
+                            <div class="col-md text-white mb-3 text-data">
+                                Calories Remaining
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md text-data">
+                                {{calorieCount}}
+                            </div>
+                            <div class="col-md text-data">
+                                500
+                            </div>
+                            <div class="col-md text-data">
+                                900
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <div class="col-md">
+                <div class="card text-white mb-3">
+                    <div class="card-header food-header1" >
+                        <h5 class="card-title text-data">Breakfast</h5>
+                        <a id="add-link" href="#">&#x2b;</a>
+                    </div>
+                    <div class="card-body">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <div class="col-md">
+                <div class="card text-white mb-3">
+                    <div class="card-header food-header2" >
+                        <h5 class="card-title text-data">Lunch</h5>
+                        <a id="add-link" href="#">&#x2b;</a>
+                    </div>
+                    <div class="card-body">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <div class="col-md">
+                <div class="card text-white mb-3">
+                    <div class="card-header food-header3" >
+                        <h5 class="card-title text-data">Dinner</h5>
+                        <a id="add-link" href="#">&#x2b;</a>
+                    </div>
+                    <div class="card-body">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <div class="col-md">
+                <div class="card text-center text-white mb-3">
+                    <div class="card-header food-header4" >
+                        <h5 class="card-title text-data">Snacks</h5>
+                    </div>
+                    <div class="card-body">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
 {% endblock %}
