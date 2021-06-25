@@ -28,8 +28,9 @@ body{
 }
 
 #logo{
-    height: 4%;
-    width: 4% ;
+    height: 8%;
+    width: 8% ;
+    padding-left: 7px;
 }
 
 .status{

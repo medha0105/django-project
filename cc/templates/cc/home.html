@@ -40,69 +40,88 @@
     </div>
 
     <div class="row">
-        <div class="col">
-            <div class="col-md">
-                <div class="card text-white mb-3">
-                    <div class="card-header food-header1" >
-                        <h5 class="card-title text-data">Breakfast</h5>
-                        <a id="add-link" href="{% url 'food_details' request.user.customer.id %}">&#x2b;</a>
-                    </div>
-                    <div class="card-body">
-                        
+
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col">
+                    <div class="col-md">
+                        <div class="card text-white mb-3">
+                            <div class="card-header food-header1" >
+                                <img src="{% static '/images/breakfast.png' %}" id="logo">
+                                <h5 class="card-title text-data">Breakfast</h5>
+                                <a id="add-link" href="#">&#x2b;</a>
+                            </div>
+                            <div class="card-body">
+                                
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col">
+                    <div class="col-md">
+                        <div class="card text-white mb-3">
+                            <div class="card-header food-header2" >
+                                <img src="{% static '/images/lunch.png' %}" id="logo">
+                                <h5 class="card-title text-data">Lunch</h5>
+                                <a id="add-link" href="#">&#x2b;</a>
+                            </div>
+                            <div class="card-body">
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>            
+        </div>
+
     </div>
 
     <div class="row">
-        <div class="col">
-            <div class="col-md">
-                <div class="card text-white mb-3">
-                    <div class="card-header food-header2" >
-                        <h5 class="card-title text-data">Lunch</h5>
-                        <a id="add-link" href="#">&#x2b;</a>
-                    </div>
-                    <div class="card-body">
-                        
+
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col">
+                    <div class="col-md">
+                        <div class="card text-white mb-3">
+                            <div class="card-header food-header3" >
+                                <img src="{% static '/images/dinner.png' %}" id="logo">
+                                <h5 class="card-title text-data">Dinner</h5>
+                                <a id="add-link" href="#">&#x2b;</a>
+                            </div>
+                            <div class="card-body">
+                                
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="row">
-        <div class="col">
-            <div class="col-md">
-                <div class="card text-white mb-3">
-                    <div class="card-header food-header3" >
-                        <h5 class="card-title text-data">Dinner</h5>
-                        <a id="add-link" href="#">&#x2b;</a>
-                    </div>
-                    <div class="card-body">
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col">
-            <div class="col-md">
-                <div class="card text-center text-white mb-3">
-                    <div class="card-header food-header4" >
-                        <h5 class="card-title text-data">Snacks</h5>
-                    </div>
-                    <div class="card-body">
-                        
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col">
+                    <div class="col-md">
+                        <div class="card text-white mb-3">
+                            <div class="card-header food-header4" >
+                                <img src="{% static '/images/snacks.png' %}" id="logo">
+                                <h5 class="card-title text-data">Snacks</h5>
+                                <a id="add-link" href="{% url 'food_details' request.user.customer.id %}">&#x2b;</a>
+                            </div>
+                            <div class="card-body">
+                                
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
     </div>
-
-</div>
-
 
 {% endblock %}
+
