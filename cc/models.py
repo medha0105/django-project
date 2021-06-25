@@ -18,15 +18,15 @@ class Customer(models.Model):
     age = models.IntegerField(null=True)
     weight = models.FloatField(null=True)
     height = models.FloatField(null=True)
-    gender = models.CharField(max_length=50, choices=GENDER)
-    category = models.CharField(max_length=50, choices=CATEGORY)
+    gender = models.CharField(max_length=50, null=True, choices=GENDER)
+    category = models.CharField(max_length=50, null=True,choices=CATEGORY)
 
     def __str__(self):
         return self.name
 
 
 class Food(models.Model):
-    CATEGORY = (
+    FOOD_CATEGORY = (
         ('Breakfast','Breakfast'),
         ('Lunch','Lunch'),
         ('Dinner','Dinner'),
@@ -38,5 +38,5 @@ class Food(models.Model):
     proteins = models.FloatField(null=True)
     fats = models.FloatField(null=True)
     weight = models.FloatField(null=True)
-    category = models.CharField(max_length=40, choices=CATEGORY)
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    food_category = models.CharField(max_length=40,null=True,choices=FOOD_CATEGORY)
+    customer = models.ForeignKey(Customer,null=True,on_delete=models.SET_NULL)
