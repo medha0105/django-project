@@ -59,17 +59,16 @@ def customerDetails(request, pk):
     return render(request,'cc/custom_details.html',context)
 
 
-def foodDetails(request,pk):
-    customer = Customer.objects.get(id=pk)
-    form2 = FoodForm(instance=customer)
+def foodDetails(request,pk1):
+    customer = Customer.objects.get(id=pk1)
+    foodForm = FoodForm(initial={'customer':customer})
     if request.method == "POST":
-        form2 = FoodForm(request.POST, instance=customer)   #request.POST has all data submitted to customer_details url
-        if form2.is_valid():                 #is_valid is a method/function to check if form values are valid
-            form2.save()
+        foodForm = FoodForm(request.POST)
+        if foodForm.is_valid():
+            foodForm.save()
             return redirect('home', request.user.customer.id)
-
-    context = {'form2':form2}
-    return render(request,'cc/foodform.html',context)
+    context = {'foodForm':foodForm}
+    return render(request,'cc/food_contents.html',context)
 
 
 def pieChart(request):
@@ -83,3 +82,5 @@ def pieChart(request):
         data.append(food.fats)
     context = {'data':data}
     return render(request,'cc/chart.html',context)
+
+    #,'food_category':'None'

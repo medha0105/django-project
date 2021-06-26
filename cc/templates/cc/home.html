@@ -48,8 +48,8 @@
                         <div class="card text-white mb-3">
                             <div class="card-header food-header1" >
                                 <img src="{% static '/images/breakfast.png' %}" id="logo">
-                                <h5 class="card-title text-data">Breakfast</h5>
-                                <a id="add-link" href="#">&#x2b;</a>
+                                <h5 class="card-title text-data" id="bf">Breakfast</h5>
+                                <a id="add-link" href="{% url 'food_details' request.user.customer.id %}"onclick="document.getElementById('bf').innerHTML">&#x2b;</a>
                             </div>
                             <div class="card-body">
                                 
@@ -110,7 +110,7 @@
                             <div class="card-header food-header4" >
                                 <img src="{% static '/images/snacks.png' %}" id="logo">
                                 <h5 class="card-title text-data">Snacks</h5>
-                                <a id="add-link" href="{% url 'food_details' request.user.customer.id %}">&#x2b;</a>
+                                <a id="add-link" href="#">&#x2b;</a>
                             </div>
                             <div class="card-body">
                                 
@@ -122,6 +122,7 @@
         </div>
 
     </div>
+    <button class="btn btn-primary"><a href="{% url 'food_details' request.user.customer.id %}">Food details</a></button>
 
 {% endblock %}
 
