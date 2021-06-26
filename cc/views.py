@@ -11,8 +11,23 @@ def about(request):
 
 def home(request, pk):
     #logic for daily calorie intake
+    customer = Customer.objects.get(id=pk)
+    foodItems = customer.food_set.all()
+    breakfast = foodItems.filter(food_category="Breakfast")
+    print(breakfast)
+    lunch = foodItems.filter(food_category="Lunch")
+    snacks = foodItems.filter(food_category="Snacks")
+    dinner = foodItems.filter(food_category="Dinner")
+
     calorieCount = dummycalc(pk)
-    context = {'calorieCount':calorieCount}
+    calorieConsumed = 0
+    for item in foodItems:
+        calorieConsumed += item.calories
+    print(calorieConsumed)
+    caloriesLeft = calorieCount - calorieConsumed
+    
+    context = {'calorieCount':calorieCount,'breakfast':breakfast,'lunch':lunch,
+    'snacks':snacks,'dinner':dinner,'calorieConsumed':calorieConsumed,'caloriesLeft':caloriesLeft}
     return render(request,'cc/home.html',context)
 
 def registerPage(request):
@@ -59,15 +74,26 @@ def customerDetails(request, pk):
     return render(request,'cc/custom_details.html',context)
 
 
-def foodDetails(request,pk1):
+def foodDetails(request,pk1,pk2=0):
     customer = Customer.objects.get(id=pk1)
-    foodForm = FoodForm(initial={'customer':customer})
+    food_category = 'Breakfast'
+    if pk2 == 1:
+        food_category = 'Breakfast'
+    elif pk2 == 2:
+        food_category = 'Lunch'
+    elif pk2 == 3:
+        food_category = 'Snacks'
+    elif pk2 == 4:
+        food_category = 'Dinner'
+        
+
+    foodForm = FoodForm(initial={'customer':customer,'food_category':food_category})
     if request.method == "POST":
         foodForm = FoodForm(request.POST)
         if foodForm.is_valid():
             foodForm.save()
             return redirect('home', request.user.customer.id)
-    context = {'foodForm':foodForm}
+    context = {'foodForm':foodForm,'fields':['item','calories','carbs','proteins','fats']}
     return render(request,'cc/food_contents.html',context)
 
 
@@ -82,5 +108,3 @@ def pieChart(request):
         data.append(food.fats)
     context = {'data':data}
     return render(request,'cc/chart.html',context)
-
-    #,'food_category':'None'

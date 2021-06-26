@@ -27,10 +27,10 @@
                                 {{calorieCount}}
                             </div>
                             <div class="col-md text-data">
-                                500
+                                {{calorieConsumed}}
                             </div>
                             <div class="col-md text-data">
-                                900
+                                {{caloriesLeft}}
                             </div>
                         </div>
                     </div>
@@ -49,10 +49,29 @@
                             <div class="card-header food-header1" >
                                 <img src="{% static '/images/breakfast.png' %}" id="logo">
                                 <h5 class="card-title text-data" id="bf">Breakfast</h5>
-                                <a id="add-link" href="{% url 'food_details' request.user.customer.id %}"onclick="document.getElementById('bf').innerHTML">&#x2b;</a>
+                                <a id="add-link" href="{% url 'food_details' request.user.customer.id 1 %}">&#x2b;</a>
                             </div>
                             <div class="card-body">
-                                
+                                <table class="table table-sm">
+                                    <tr>
+                                        <th>Item</th>
+                                        <th>Calories</th>
+                                        <th>Carbs</th>
+                                        <th>Proteins</th>
+                                        <th>Fats</th>
+                                    </tr>
+                                    {% for food in breakfast %}
+                                        <tr>
+                                            <td>{{food.item}}</td>
+                                            <td>{{food.calories}}</td>
+                                            <td>{{food.carbs}}</td>
+                                            <td>{{food.proteins}}</td>
+                                            <td>{{food.fats}}</td>
+                                    
+                    
+                                        </tr>
+                                    {% endfor %}
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -68,10 +87,30 @@
                             <div class="card-header food-header2" >
                                 <img src="{% static '/images/lunch.png' %}" id="logo">
                                 <h5 class="card-title text-data">Lunch</h5>
-                                <a id="add-link" href="#">&#x2b;</a>
+                                <a id="add-link" href="{% url 'food_details' request.user.customer.id 2 %}">&#x2b;</a>
                             </div>
                             <div class="card-body">
+                                <table class="table table-sm">
+                                    <tr>
+                                        <th>Item</th>
+                                        <th>Calories</th>
+                                        <th>Carbs</th>
+                                        <th>Proteins</th>
+                                        <th>Fats</th>
                                 
+                                    </tr>
+                                    {% for food in lunch %}
+                                        <tr>
+                                            <td>{{food.item}}</td>
+                                            <td>{{food.calories}}</td>
+                                            <td>{{food.carbs}}</td>
+                                            <td>{{food.proteins}}</td>
+                                            <td>{{food.fats}}</td>
+                                            
+                    
+                                        </tr>
+                                    {% endfor %}
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -91,10 +130,30 @@
                             <div class="card-header food-header3" >
                                 <img src="{% static '/images/dinner.png' %}" id="logo">
                                 <h5 class="card-title text-data">Dinner</h5>
-                                <a id="add-link" href="#">&#x2b;</a>
+                                <a id="add-link" href="{% url 'food_details' request.user.customer.id 4 %}">&#x2b;</a>
                             </div>
                             <div class="card-body">
-                                
+                                <table class="table table-sm">
+                                    <tr>
+                                        <th>Item</th>
+                                        <th>Calories</th>
+                                        <th>Carbs</th>
+                                        <th>Proteins</th>
+                                        <th>Fats</th>
+                                       
+                                    </tr>
+                                    {% for food in dinner %}
+                                        <tr>
+                                            <td>{{food.item}}</td>
+                                            <td>{{food.calories}}</td>
+                                            <td>{{food.carbs}}</td>
+                                            <td>{{food.proteins}}</td>
+                                            <td>{{food.fats}}</td>
+                                            
+                    
+                                        </tr>
+                                    {% endfor %}
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -110,10 +169,30 @@
                             <div class="card-header food-header4" >
                                 <img src="{% static '/images/snacks.png' %}" id="logo">
                                 <h5 class="card-title text-data">Snacks</h5>
-                                <a id="add-link" href="#">&#x2b;</a>
+                                <a id="add-link" href="{% url 'food_details' request.user.customer.id 3 %}">&#x2b;</a>
                             </div>
                             <div class="card-body">
-                                
+                                <table class="table table-sm">
+                                    <tr>
+                                        <th>Item</th>
+                                        <th>Calories</th>
+                                        <th>Carbs</th>
+                                        <th>Proteins</th>
+                                        <th>Fats</th>
+                            
+                                    </tr>
+                                    {% for food in snacks %}
+                                        <tr>
+                                            <td>{{food.item}}</td>
+                                            <td>{{food.calories}}</td>
+                                            <td>{{food.carbs}}</td>
+                                            <td>{{food.proteins}}</td>
+                                            <td>{{food.fats}}</td>
+                            
+                    
+                                        </tr>
+                                    {% endfor %}
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -122,7 +201,6 @@
         </div>
 
     </div>
-    <button class="btn btn-primary"><a href="{% url 'food_details' request.user.customer.id %}">Food details</a></button>
 
 {% endblock %}
 

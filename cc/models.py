@@ -37,6 +37,9 @@ class Food(models.Model):
     carbs = models.FloatField(null=True)
     proteins = models.FloatField(null=True)
     fats = models.FloatField(null=True)
-    weight = models.FloatField(null=True)
+    # weight = models.FloatField(null=True)
     food_category = models.CharField(max_length=40,null=True,choices=FOOD_CATEGORY)
     customer = models.ForeignKey(Customer,null=True,on_delete=models.SET_NULL)
+
+    def __str__(self):
+        return self.item
