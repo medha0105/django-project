@@ -121,3 +121,8 @@ def pieChart(request):
         data.append(food.fats)
     context = {'data':data}
     return render(request,'cc/chart.html',context)
+
+def profilePage(request, pk):
+    customer = Customer.objects.get(id=pk)
+    context = {'customer':customer}
+    return render(request, 'cc/profilePage.html', context)
