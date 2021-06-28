@@ -14,7 +14,6 @@ def home(request, pk):
     customer = Customer.objects.get(id=pk)
     foodItems = customer.food_set.all()
     breakfast = foodItems.filter(food_category="Breakfast")
-    print(breakfast)
     lunch = foodItems.filter(food_category="Lunch")
     snacks = foodItems.filter(food_category="Snacks")
     dinner = foodItems.filter(food_category="Dinner")
@@ -23,11 +22,25 @@ def home(request, pk):
     calorieConsumed = 0
     for item in foodItems:
         calorieConsumed += item.calories
-    print(calorieConsumed)
+    # print(calorieConsumed)
     caloriesLeft = calorieCount - calorieConsumed
+
+    data = []
+    data.append(calorieConsumed)
+    pieCarbs=0
+    pieProteins=0
+    pieFats=0
+    for item in foodItems:
+        pieCarbs += item.carbs
+        pieProteins += item.proteins
+        pieFats += item.fats  
+
+    data.append(pieCarbs)
+    data.append(pieProteins)
+    data.append(pieFats)
     
     context = {'calorieCount':calorieCount,'breakfast':breakfast,'lunch':lunch,
-    'snacks':snacks,'dinner':dinner,'calorieConsumed':calorieConsumed,'caloriesLeft':caloriesLeft}
+    'snacks':snacks,'dinner':dinner,'calorieConsumed':calorieConsumed,'caloriesLeft':caloriesLeft,'data':data}
     return render(request,'cc/home.html',context)
 
 def registerPage(request):
