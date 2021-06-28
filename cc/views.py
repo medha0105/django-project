@@ -1,20 +1,22 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group
 from django.contrib import messages
 from .models import *
 from .forms import *
 from .caloriecalc import dummycalc
+from .decorators import unauthenticated_user
 
 def about(request):
     return render(request, 'cc/about.html')
 
+@login_required(login_url = 'login')
 def home(request, pk):
     #logic for daily calorie intake
     customer = Customer.objects.get(id=pk)
     foodItems = customer.food_set.all()
     breakfast = foodItems.filter(food_category="Breakfast")
-    print(breakfast)
     lunch = foodItems.filter(food_category="Lunch")
     snacks = foodItems.filter(food_category="Snacks")
     dinner = foodItems.filter(food_category="Dinner")
@@ -23,13 +25,29 @@ def home(request, pk):
     calorieConsumed = 0
     for item in foodItems:
         calorieConsumed += item.calories
-    print(calorieConsumed)
+    # print(calorieConsumed)
     caloriesLeft = calorieCount - calorieConsumed
+
+    #logic for rendering pie chart
+    data = []
+    data.append(calorieConsumed)
+    pieCarbs=0
+    pieProteins=0
+    pieFats=0
+    for item in foodItems:
+        pieCarbs += item.carbs
+        pieProteins += item.proteins
+        pieFats += item.fats  
+
+    data.append(pieCarbs)
+    data.append(pieProteins)
+    data.append(pieFats)
     
     context = {'calorieCount':calorieCount,'breakfast':breakfast,'lunch':lunch,
-    'snacks':snacks,'dinner':dinner,'calorieConsumed':calorieConsumed,'caloriesLeft':caloriesLeft}
+    'snacks':snacks,'dinner':dinner,'calorieConsumed':calorieConsumed,'caloriesLeft':caloriesLeft,'data':data}
     return render(request,'cc/home.html',context)
 
+@unauthenticated_user
 def registerPage(request):
     form = CreateUserForm()
     if request.method == 'POST':
@@ -44,6 +62,7 @@ def registerPage(request):
     context={'form':form}
     return render(request, 'cc/register.html', context)
 
+@unauthenticated_user
 def loginPage(request):
     if request.method=='POST':
         username = request.POST.get('username')
@@ -60,7 +79,7 @@ def logoutUser(request):
     logout(request)
     return redirect('login')
     
-
+@login_required(login_url = 'login')
 def customerDetails(request, pk):
     customer = Customer.objects.get(id=pk)
     form = CustomerForm(instance=customer)
@@ -74,6 +93,7 @@ def customerDetails(request, pk):
     return render(request,'cc/custom_details.html',context)
 
 
+@login_required(login_url = 'login')
 def foodDetails(request,pk1,pk2=0):
     customer = Customer.objects.get(id=pk1)
     food_category = 'Breakfast'
@@ -97,18 +117,7 @@ def foodDetails(request,pk1,pk2=0):
     return render(request,'cc/food_contents.html',context)
 
 
-def pieChart(request):
-    data = []
-    queryset = Food.objects.all()
-    
-    for food in queryset:
-        data.append(food.calories)
-        data.append(food.carbs)
-        data.append(food.proteins)
-        data.append(food.fats)
-    context = {'data':data}
-    return render(request,'cc/chart.html',context)
-
+@login_required(login_url = 'login')
 def profilePage(request, pk):
     customer = Customer.objects.get(id=pk)
     context = {'customer':customer}
