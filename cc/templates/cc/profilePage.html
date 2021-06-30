@@ -10,8 +10,21 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex flex-column align-items-center text-center">
-                            <img src="{% static '/images/user.png' %}" class="rounded-circle" width="150">
+                            {% if request.user.customer.profile_pic %}
+                                <img src="{{request.user.customer.profile_pic.url}}" class="rounded-circle" width="180" height="180">
+                            {% else %}
+                                <img src="{% static 'images/user.png' %}" class="rounded-circle" width="180" height="180">
+                            {% endif %}
+
                             <div class="mt-3"><h4>{{customer.name|title}}</h4></div>
+
+                            <form method="POST" action="" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                {{form.as_p}}
+ 
+                                <input class="btn btn-sm btn-info" type="submit" name="Update Picture">
+                            </form>
+
                         </div>
                     </div>
                 </div>
