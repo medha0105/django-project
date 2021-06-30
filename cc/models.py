@@ -21,6 +21,7 @@ class Customer(models.Model):
     height = models.FloatField(null=True)
     gender = models.CharField(max_length=50, null=True, choices=GENDER)
     category = models.CharField(max_length=50, null=True,choices=CATEGORY)
+    profile_pic = models.ImageField(null=True, blank=True, default='user.png')
 
     def __str__(self):
         return self.name

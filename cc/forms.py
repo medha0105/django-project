@@ -1,3 +1,4 @@
+from django.db.models import fields
 from django.forms import ModelForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
@@ -19,3 +20,7 @@ class FoodForm(ModelForm):
         model = Food
         fields = ['item','calories','carbs','proteins','fats','food_category','customer']
         
+class ProfilePictureForm(ModelForm):
+    class Meta:
+        model = Customer
+        fields = ['profile_pic']

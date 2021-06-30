@@ -120,5 +120,12 @@ def foodDetails(request,pk1,pk2=0):
 @login_required(login_url = 'login')
 def profilePage(request, pk):
     customer = Customer.objects.get(id=pk)
-    context = {'customer':customer}
+
+    form = ProfilePictureForm(instance=customer)
+    if request.method == 'POST':
+        form = ProfilePictureForm(request.POST, request.FILES, instance=customer)
+        if form.is_valid():
+            form.save()
+
+    context = {'customer':customer, 'form':form}
     return render(request, 'cc/profilePage.html', context)
