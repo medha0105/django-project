@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
-    'crsipy_forms',
     'cc.apps.CcConfig',
     
 ]
@@ -134,7 +133,6 @@ STATICFILES_DIRS = [
 
 MEDIA_ROOT = BASE_DIR/"static/images"
 
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 
 # Default primary key field type
