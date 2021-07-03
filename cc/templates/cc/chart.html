@@ -4,7 +4,7 @@
     {% block content %}
     <!-- id="container" style="width: 55%;" -->
     
-    <div id="container" style="height: 300px; width: 55%;">
+    <div id="container" style="height: 100%; width:100%; position: relative; height:50vh; width:90vw">
      <canvas id="pie-chart"></canvas>
       
     </div>
@@ -29,6 +29,7 @@
         },
         options: {
           responsive: true,
+          maintainAspectRatio: false,
           borderWidth:0,
           borderRadius:0,
           borderAlign:'center'
