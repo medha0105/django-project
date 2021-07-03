@@ -1,5 +1,6 @@
 {% extends 'cc/main.html' %}
 {% load static %}
+
 {% block content %}
 
 <div class="container">
@@ -20,7 +21,7 @@
 
                             <form method="POST" action="" enctype="multipart/form-data">
                                 {% csrf_token %}
-                                {{form.as_p}}
+                                {{form}}
  
                                 <input class="btn btn-sm btn-info" type="submit" name="Update Picture">
                             </form>

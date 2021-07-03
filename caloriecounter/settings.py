@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'cc.apps.CcConfig',
+    
 ]
 
 MIDDLEWARE = [
@@ -131,6 +132,7 @@ STATICFILES_DIRS = [
 ]
 
 MEDIA_ROOT = BASE_DIR/"static/images"
+
 
 
 # Default primary key field type

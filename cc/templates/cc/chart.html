@@ -1,51 +1,38 @@
-<!DOCTYPE html>
-<html>
-<body>
-    {% block content %}
-    <!-- id="container" style="width: 55%;" -->
-    
-    <div id="container" style="height: 100%; width:100%; position: relative; height:50vh; width:90vw">
-     <canvas id="pie-chart"></canvas>
-      
-    </div>
+<div id="container" style="height: 100%; width:100%; position: relative; height:50vh; width:90vw">
+  <canvas id="pie-chart"></canvas>    
+</div>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
-    <script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+<script>
 
-      var config = {
-        type: 'doughnut',
-        startAngle: 60,
-		    innerRadius: 90,
-        data: {
-          datasets: [{
-            data: {{ data|safe }},
-            backgroundColor: [
-            
-'#6A1B58', '#A33B8B', '#BF6DAC', '#d163d1'
-            ],
-            label: 'Calories'
-          }],
-          labels: ['Calories', 'Carbs', 'Proteins', 'Fats'],
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          borderWidth:0,
-          borderRadius:0,
-          borderAlign:'center'
-        }
-      };
+  var config = {
+    type: 'doughnut',
+    startAngle: 60,
+    innerRadius: 80,
+    data: {
+      datasets: [{
+        data: {{ data|safe }},
+        backgroundColor: [
+        '#6A1B58', '#A33B8B', '#BF6DAC', '#d163d1'
+        ],
+        label: 'Calories'
+      }],
+      labels: ['Calories', 'Carbs', 'Proteins', 'Fats'],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      borderWidth:0,
+      borderRadius:0,
+      borderAlign:'center'
+    }
+  };
 
-      window.onload = function() {
-        var ctx = document.getElementById('pie-chart').getContext('2d');
-        window.myPie = new Chart(ctx, config);
-      };
+  window.onload = function() {
+    var ctx = document.getElementById('pie-chart').getContext('2d');
+    window.myPie = new Chart(ctx, config);
+  };
 
-    </script>
-
-    {% endblock %}
-</body>
-    
-</html>
+</script>
 
 
