@@ -1,16 +1,16 @@
 {%  extends 'cc/main.html' %}
 {% load static %}
 {% block content %}
-<form method="POST">
-    {% csrf_token %}
-    <span>Enter date :</span>
-    <input type="text" placeholder="MM/DD/YYYY" name="date">
-    
-    <input type="submit" value="Submit">
-
-</form>
 
 <div class="container">
+    <div class="row top-row">
+        <form method="POST">
+            {% csrf_token %}
+                <span style="font-family: sans-serif;">Enter date </span>
+                <input type="text" class="input-box" placeholder="MM/DD/YYYY" name="date" >
+                <input class="btn btn-sm btn-outline-primary submit-btn" type="submit" value="Submit">
+        </form>
+</div>
 
     <div class="row">
 

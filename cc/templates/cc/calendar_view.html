@@ -8,9 +8,9 @@
         <link rel="stylesheet" type="text/css" href="{% static '/css/cal.css' %}">
     </head>
     <body>
-
         {% include 'cc/navbar.html' %}
-        <button><a href="{% url 'daily_details' request.user.customer.id%}">View all details</a></button>
+
+        <a class="button btn btn-outline-primary" href="{% url 'daily_details' request.user.customer.id%}">View all details</a>
         <center>{{cal|safe}}</center>
 
     </body>
