@@ -1,0 +1,41 @@
+.month {
+    width: 98%;
+    /* margin: auto; */
+    margin-top: 80px;
+    font-size: 13px;
+  }
+  
+  .month tr, .month td {
+    border: 1px solid black;
+  }
+  
+  .month th {
+    padding: 10px;
+    text-align: center;
+    font-size: 18px;
+  }
+  
+  .month td {
+    width: 200px;
+    height: 150px;
+    padding: 20px 0px 0px 5px;
+  }
+  
+  .month {
+    font-size: 25px;
+  }
+  
+  .date {
+    font-size: 16px;
+  }
+  
+  
+
+  ul {
+    height: 100%;
+    padding: 0px 5px 0px 20px;
+  }
+  
+  a {
+    color: #17a2b8;
+  }

@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'cc.apps.CcConfig',
+    'django_filters',
     
 ]
 

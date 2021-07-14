@@ -7,6 +7,10 @@ from .models import *
 from .forms import *
 from .caloriecalc import dummycalc
 from .decorators import unauthenticated_user
+import calendar
+from calendar import HTMLCalendar
+from datetime import date
+
 
 def about(request):
     return render(request, 'cc/about.html')
@@ -16,6 +20,9 @@ def home(request, pk):
     #logic for daily calorie intake
     customer = Customer.objects.get(id=pk)
     foodItems = customer.food_set.all()
+    today = date.today()
+    foodItems = foodItems.filter(date_created__year=today.year,date_created__month=today.month,date_created__day=today.day)
+    
     breakfast = foodItems.filter(food_category="Breakfast")
     lunch = foodItems.filter(food_category="Lunch")
     snacks = foodItems.filter(food_category="Snacks")
@@ -26,7 +33,10 @@ def home(request, pk):
     for item in foodItems:
         calorieConsumed += item.calories
     # print(calorieConsumed)
-    caloriesLeft = calorieCount - calorieConsumed
+    caloriesLeft = calorieCount - calorieConsumed 
+    if caloriesLeft < 0:
+        caloriesLeft = 0
+    
 
     #logic for rendering pie chart
     data = []
@@ -129,3 +139,53 @@ def profilePage(request, pk):
 
     context = {'customer':customer, 'form':form}
     return render(request, 'cc/profilePage.html', context)
+
+
+def calendarView(request,year,month):
+    month = month.capitalize()
+    month_number = list(calendar.month_name).index(month)
+    month_number = int(month_number)
+
+    #create calendar
+    cal = HTMLCalendar().formatmonth(year,month_number)
+
+    context = {'year':year,'month':month,'cal':cal}
+    return render(request,'cc/calendar_view.html',context)
+
+
+def dailyDetails(request, pk):
+    customer = Customer.objects.get(id=pk)
+    foodItems = customer.food_set.all()
+
+    if request.method == "POST":
+        date = request.POST.get('date')
+        separateDate = date.split('/')
+        foodItems = foodItems.filter(date_created__year=separateDate[2],date_created__month=separateDate[0],date_created__day=separateDate[1])
+        print(foodItems)
+
+    breakfast = foodItems.filter(food_category="Breakfast")
+    lunch = foodItems.filter(food_category="Lunch")
+    snacks = foodItems.filter(food_category="Snacks")
+    dinner = foodItems.filter(food_category="Dinner")
+
+    data = []
+    calorieConsumed=0
+    pieCarbs=0
+    pieProteins=0
+    pieFats=0
+    for item in foodItems:
+        calorieConsumed += item.calories
+        pieCarbs += item.carbs
+        pieProteins += item.proteins
+        pieFats += item.fats  
+    data.append(calorieConsumed)
+    data.append(pieCarbs)
+    data.append(pieProteins)
+    data.append(pieFats)
+
+    context = {'breakfast':breakfast,'lunch':lunch,'snacks':snacks,'dinner':dinner,
+    'calorieConsumed':calorieConsumed,'data':data}
+
+    return render(request,'cc/daily_details.html',context)
+  
+   
