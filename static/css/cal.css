@@ -1,7 +1,6 @@
 .month {
     width: 98%;
-    /* margin: auto; */
-    margin-top: 80px;
+    margin: 16px 5px;
     font-size: 13px;
   }
   
@@ -29,8 +28,6 @@
     font-size: 16px;
   }
   
-  
-
   ul {
     height: 100%;
     padding: 0px 5px 0px 20px;
@@ -38,4 +35,8 @@
   
   a {
     color: #17a2b8;
+  }
+
+  .button{
+    margin: 10px 0px 0px 15px;
   }
