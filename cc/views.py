@@ -187,11 +187,20 @@ def dailyDetails(request, pk):
     context = {'breakfast':breakfast,'lunch':lunch,'snacks':snacks,'dinner':dinner,
     'calorieConsumed':calorieConsumed,'data':data}
 
+    # request.session['breakfast'] = breakfast 
+    # request.session['lunch'] = lunch 
+
     return render(request,'cc/daily_details.html',context)
 
 def barchart(request,pk):
     labels = []
     data = []
+
+    # breakfast1 = request.session['breakfast'] 
+    # lunch1 = request.session['lunch'] 
+
+    # print(breakfast1)
+    # print(lunch1)
 
     customer = Customer.objects.get(id=pk)
     foodItems = customer.food_set.all()

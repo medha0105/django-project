@@ -10,6 +10,7 @@ $.ajax({
         data: {
             labels: ['Breakfast', 'Lunch', 'Snacks', 'Dinner'],
             datasets: [{
+                label:"Category wise calories",
                 data: data.data,
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
@@ -27,6 +28,7 @@ $.ajax({
             }]
         },
         options: {
+            responsive: true,
             scales: {
                 y: {
                     beginAtZero: true
