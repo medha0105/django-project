@@ -13,7 +13,7 @@
           <a class="nav-link" href="{% url 'home' request.user.customer.id %}">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'cal' 2021 'July'%}">Calendar</a>
+          <a class="nav-link" href="{% url 'daily_details' request.user.customer.id%}">Reports</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'profile_page' request.user.customer.id %}">Profile</a>

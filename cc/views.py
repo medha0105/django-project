@@ -58,6 +58,7 @@ def home(request, pk):
     'snacks':snacks,'dinner':dinner,'calorieConsumed':calorieConsumed,'caloriesLeft':caloriesLeft,'data':data}
     return render(request,'cc/home.html',context)
 
+
 @unauthenticated_user
 def registerPage(request):
     form = CreateUserForm()
@@ -73,6 +74,7 @@ def registerPage(request):
     context={'form':form}
     return render(request, 'cc/register.html', context)
 
+
 @unauthenticated_user
 def loginPage(request):
     if request.method=='POST':
@@ -86,10 +88,12 @@ def loginPage(request):
             messages.info(request, "Username or password is incorrect")
     return render(request,'cc/login.html')
 
+
 def logoutUser(request):
     logout(request)
     return redirect('login')
     
+
 @login_required(login_url = 'login')
 def customerDetails(request, pk):
     customer = Customer.objects.get(id=pk)
@@ -142,18 +146,7 @@ def profilePage(request, pk):
     return render(request, 'cc/profilePage.html', context)
 
 
-def calendarView(request,year,month):
-    month = month.capitalize()
-    month_number = list(calendar.month_name).index(month)
-    month_number = int(month_number)
-
-    #create calendar
-    cal = HTMLCalendar().formatmonth(year,month_number)
-
-    context = {'year':year,'month':month,'cal':cal}
-    return render(request,'cc/calendar_view.html',context)
-
-
+@login_required(login_url = 'login')
 def dailyDetails(request, pk):
     customer = Customer.objects.get(id=pk)
     foodItems = customer.food_set.all()
