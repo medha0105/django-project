@@ -10,6 +10,7 @@ urlpatterns = [
     path('logout/', views.logoutUser, name="logout"),
     path('register/', views.registerPage, name="register"),
     path('profile/<str:pk>/', views.profilePage, name="profile_page"),
-    path('cal/<int:year>/<str:month>/',views.calendarView,name="cal"),
-    path('daily_details/<str:pk>',views.dailyDetails,name="daily_details"),
+    path('cal/<int:year>/<str:month>/', views.calendarView,name="cal"),
+    path('daily_details/<str:pk>', views.dailyDetails,name="daily_details"),
+    path('barchart/<str:pk>/', views.barchart, name="bar")
 ]

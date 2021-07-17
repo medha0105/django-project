@@ -10,6 +10,7 @@ from .decorators import unauthenticated_user
 import calendar
 from calendar import HTMLCalendar
 from datetime import date
+from django.http import JsonResponse
 
 
 def about(request):
@@ -186,6 +187,55 @@ def dailyDetails(request, pk):
     context = {'breakfast':breakfast,'lunch':lunch,'snacks':snacks,'dinner':dinner,
     'calorieConsumed':calorieConsumed,'data':data}
 
+    # request.session['breakfast'] = breakfast 
+    # request.session['lunch'] = lunch 
+
     return render(request,'cc/daily_details.html',context)
+
+def barchart(request,pk):
+    labels = []
+    data = []
+
+    # breakfast1 = request.session['breakfast'] 
+    # lunch1 = request.session['lunch'] 
+
+    # print(breakfast1)
+    # print(lunch1)
+
+    customer = Customer.objects.get(id=pk)
+    foodItems = customer.food_set.all()
+    today = date.today()
+    foodItems = foodItems.filter(date_created__year=today.year,date_created__month=today.month,date_created__day=today.day)
+    breakfast = foodItems.filter(food_category="Breakfast")
+    lunch = foodItems.filter(food_category="Lunch")
+    snacks = foodItems.filter(food_category="Snacks")
+    dinner = foodItems.filter(food_category="Dinner")
+
+    labels = ['breakfast','lunch','snacks','dinner']
+    breakfastCal=0
+    lunchCal=0
+    snacksCal=0
+    dinnerCal=0
+
+    for item in breakfast:
+        breakfastCal += item.calories
+    for item in lunch:
+        lunchCal += item.calories
+    for item in snacks:
+        snacksCal += item.calories
+    for item in dinner:
+        dinnerCal += item.calories
+
+    data.append(breakfastCal)
+    data.append(lunchCal)
+    data.append(snacksCal)
+    data.append(dinnerCal)
+    
+    return JsonResponse(data={
+        'labels': labels,
+        'data': data,
+    })
+
+    # return render(request,'cc/daily_details.html')
   
    
