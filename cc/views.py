@@ -58,14 +58,14 @@ def home(request, pk):
     return render(request,'cc/home.html',context)
 
 
-@unauthenticated_user
+# @unauthenticated_user
 def registerPage(request):
     form = CreateUserForm()
     if request.method == 'POST':
         form = CreateUserForm(request.POST)
         if form.is_valid():
             user = form.save()
-        
+            setattr(user, 'backend', 'django.contrib.auth.backends.RemoteUserBackend')
             login(request, user)
             # messages.success(request, "Account created successully for " + username)
             return redirect('customer_details', request.user.customer.id)
