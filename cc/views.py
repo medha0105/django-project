@@ -7,14 +7,13 @@ from .models import *
 from .forms import *
 from .caloriecalc import dummycalc
 from .decorators import unauthenticated_user
-import calendar
-from calendar import HTMLCalendar
 from datetime import date
 from django.http import JsonResponse
 
 
 def about(request):
     return render(request, 'cc/about.html')
+
 
 @login_required(login_url = 'login')
 def home(request, pk):
@@ -149,56 +148,50 @@ def profilePage(request, pk):
 @login_required(login_url = 'login')
 def dailyDetails(request, pk):
     customer = Customer.objects.get(id=pk)
-    foodItems = customer.food_set.all()
+    context = {}
 
     if request.method == "POST":
         date = request.POST.get('date')
         separateDate = date.split('/')
+        foodItems = customer.food_set.all()
         foodItems = foodItems.filter(date_created__year=separateDate[2],date_created__month=separateDate[0],date_created__day=separateDate[1])
         print(foodItems)
 
-    breakfast = foodItems.filter(food_category="Breakfast")
-    lunch = foodItems.filter(food_category="Lunch")
-    snacks = foodItems.filter(food_category="Snacks")
-    dinner = foodItems.filter(food_category="Dinner")
+        breakfast = foodItems.filter(food_category="Breakfast")
+        lunch = foodItems.filter(food_category="Lunch")
+        snacks = foodItems.filter(food_category="Snacks")
+        dinner = foodItems.filter(food_category="Dinner")
 
-    data = []
-    calorieConsumed=0
-    pieCarbs=0
-    pieProteins=0
-    pieFats=0
-    for item in foodItems:
-        calorieConsumed += item.calories
-        pieCarbs += item.carbs
-        pieProteins += item.proteins
-        pieFats += item.fats  
-    data.append(calorieConsumed)
-    data.append(pieCarbs)
-    data.append(pieProteins)
-    data.append(pieFats)
+        data = []
+        calorieConsumed=0
+        pieCarbs=0
+        pieProteins=0
+        pieFats=0
+        for item in foodItems:
+            calorieConsumed += item.calories
+            pieCarbs += item.carbs
+            pieProteins += item.proteins
+            pieFats += item.fats  
+        data.append(calorieConsumed)
+        data.append(pieCarbs)
+        data.append(pieProteins)
+        data.append(pieFats)
 
-    context = {'breakfast':breakfast,'lunch':lunch,'snacks':snacks,'dinner':dinner,
-    'calorieConsumed':calorieConsumed,'data':data}
+        context = {'breakfast':breakfast,'lunch':lunch,'snacks':snacks,'dinner':dinner,
+        'calorieConsumed':calorieConsumed,'data':data}
 
-    # request.session['breakfast'] = breakfast 
-    # request.session['lunch'] = lunch 
+        global sendData
+        def sendData():
+            return foodItems
 
     return render(request,'cc/daily_details.html',context)
 
-def barchart(request,pk):
+
+def barchart(request):
     labels = []
     data = []
 
-    # breakfast1 = request.session['breakfast'] 
-    # lunch1 = request.session['lunch'] 
-
-    # print(breakfast1)
-    # print(lunch1)
-
-    customer = Customer.objects.get(id=pk)
-    foodItems = customer.food_set.all()
-    today = date.today()
-    foodItems = foodItems.filter(date_created__year=today.year,date_created__month=today.month,date_created__day=today.day)
+    foodItems = sendData()
     breakfast = foodItems.filter(food_category="Breakfast")
     lunch = foodItems.filter(food_category="Lunch")
     snacks = foodItems.filter(food_category="Snacks")
@@ -228,7 +221,5 @@ def barchart(request,pk):
         'labels': labels,
         'data': data,
     })
-
-    # return render(request,'cc/daily_details.html')
   
    

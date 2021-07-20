@@ -4,127 +4,168 @@
 
 <div class="container">
     <div class="row top-row">
-        <form method="POST">
+        <form method="POST" id="getDate" >
             {% csrf_token %}
                 <span style="font-family: sans-serif;">Enter date </span>
                 <input type="text" class="input-box" placeholder="MM/DD/YYYY" name="date" >
-                <input class="btn btn-sm btn-outline-primary submit-btn" type="submit" value="Submit">
+                <input class="btn btn-sm btn-outline-primary submit-btn" type="submit" value="Submit" onclick="showChart()">
         </form>
-</div>
+    </div>
 
-    <div class="row">
+    <div>
 
-        <div class="col-md-6">
-            <div class="row">
-                <div class="col">
-                    <div class="col-md">
-                        <div class="card text-white mb-3">
-                            <div class="card-header food-header1" >
-                                <img src="{% static '/images/breakfast.png' %}" id="logo">
-                                <h5 class="card-title text-data" id="bf">Breakfast</h5>
-                            </div>
-                            <div class="card-body">
-                                <table class="table table-sm">
-                                    <tr>
-                                        <th>Item</th>
-                                        <th>Calories</th>
-                                        <th>Carbs</th>
-                                        <th>Proteins</th>
-                                        <th>Fats</th>
-                                    </tr>
-                                    {% for food in breakfast %}
+        <div class="row">
+
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col">
+                        <div class="col-md">
+                            <div class="card text-white mb-3">
+                                <div class="card-header food-header1" >
+                                    <img src="{% static '/images/breakfast.png' %}" id="logo">
+                                    <h5 class="card-title text-data" id="bf">Breakfast</h5>
+                                </div>
+                                <div class="card-body">
+                                    <table class="table table-sm">
                                         <tr>
-                                            <td>{{food.item}}</td>
-                                            <td>{{food.calories}}</td>
-                                            <td>{{food.carbs}}</td>
-                                            <td>{{food.proteins}}</td>
-                                            <td>{{food.fats}}</td>
-                                    
-                    
+                                            <th>Item</th>
+                                            <th>Calories</th>
+                                            <th>Carbs</th>
+                                            <th>Proteins</th>
+                                            <th>Fats</th>
                                         </tr>
-                                    {% endfor %}
-                                </table>
+                                        {% for food in breakfast %}
+                                            <tr>
+                                                <td>{{food.item}}</td>
+                                                <td>{{food.calories}}</td>
+                                                <td>{{food.carbs}}</td>
+                                                <td>{{food.proteins}}</td>
+                                                <td>{{food.fats}}</td>
+                                        
+                        
+                                            </tr>
+                                        {% endfor %}
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col">
+                        <div class="col-md">
+                            <div class="card text-white mb-3">
+                                <div class="card-header food-header2" >
+                                    <img src="{% static '/images/lunch.png' %}" id="logo">
+                                    <h5 class="card-title text-data">Lunch</h5>
+                                </div>
+                                <div class="card-body">
+                                    <table class="table table-sm">
+                                        <tr>
+                                            <th>Item</th>
+                                            <th>Calories</th>
+                                            <th>Carbs</th>
+                                            <th>Proteins</th>
+                                            <th>Fats</th>
+                                    
+                                        </tr>
+                                        {% for food in lunch %}
+                                            <tr>
+                                                <td>{{food.item}}</td>
+                                                <td>{{food.calories}}</td>
+                                                <td>{{food.carbs}}</td>
+                                                <td>{{food.proteins}}</td>
+                                                <td>{{food.fats}}</td>
+                                                
+                        
+                                            </tr>
+                                        {% endfor %}
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>            
+            </div>
+
         </div>
 
-        <div class="col-md-6">
-            <div class="row">
-                <div class="col">
-                    <div class="col-md">
-                        <div class="card text-white mb-3">
-                            <div class="card-header food-header2" >
-                                <img src="{% static '/images/lunch.png' %}" id="logo">
-                                <h5 class="card-title text-data">Lunch</h5>
-                            </div>
-                            <div class="card-body">
-                                <table class="table table-sm">
-                                    <tr>
-                                        <th>Item</th>
-                                        <th>Calories</th>
-                                        <th>Carbs</th>
-                                        <th>Proteins</th>
-                                        <th>Fats</th>
-                                
-                                    </tr>
-                                    {% for food in lunch %}
+        <div class="row">
+
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col">
+                        <div class="col-md">
+                            <div class="card text-white mb-3">
+                                <div class="card-header food-header3" >
+                                    <img src="{% static '/images/dinner.png' %}" id="logo">
+                                    <h5 class="card-title text-data">Dinner</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div style="overflow-x:auto;">
+                                    <table class="table table-sm">
                                         <tr>
-                                            <td>{{food.item}}</td>
-                                            <td>{{food.calories}}</td>
-                                            <td>{{food.carbs}}</td>
-                                            <td>{{food.proteins}}</td>
-                                            <td>{{food.fats}}</td>
-                                            
-                    
+                                            <th>Item</th>
+                                            <th>Calories</th>
+                                            <th>Carbs</th>
+                                            <th>Proteins</th>
+                                            <th>Fats</th>
+                                        
                                         </tr>
-                                    {% endfor %}
-                                </table>
+                                        {% for food in dinner %}
+                                            <tr>
+                                                <td>{{food.item}}</td>
+                                                <td>{{food.calories}}</td>
+                                                <td>{{food.carbs}}</td>
+                                                <td>{{food.proteins}}</td>
+                                                <td>{{food.fats}}</td>
+                                                
+                        
+                                            </tr>
+                                        {% endfor %}
+                                    </table>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>            
-        </div>
+            </div>
 
-    </div>
-
-    <div class="row">
-
-        <div class="col-md-6">
-            <div class="row">
-                <div class="col">
-                    <div class="col-md">
-                        <div class="card text-white mb-3">
-                            <div class="card-header food-header3" >
-                                <img src="{% static '/images/dinner.png' %}" id="logo">
-                                <h5 class="card-title text-data">Dinner</h5>
-                            </div>
-                            <div class="card-body">
-                                <div style="overflow-x:auto;">
-                                <table class="table table-sm">
-                                    <tr>
-                                        <th>Item</th>
-                                        <th>Calories</th>
-                                        <th>Carbs</th>
-                                        <th>Proteins</th>
-                                        <th>Fats</th>
-                                       
-                                    </tr>
-                                    {% for food in dinner %}
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col">
+                        <div class="col-md">
+                            <div class="card text-white mb-3">
+                                <div class="card-header food-header4" >
+                                    <img src="{% static '/images/snacks.png' %}" id="logo">
+                                    <h5 class="card-title text-data">Snacks</h5>
+                                </div>
+                                <div class="card-body">
+                                    <table class="table table-sm">
                                         <tr>
-                                            <td>{{food.item}}</td>
-                                            <td>{{food.calories}}</td>
-                                            <td>{{food.carbs}}</td>
-                                            <td>{{food.proteins}}</td>
-                                            <td>{{food.fats}}</td>
-                                            
-                    
+                                            <th>Item</th>
+                                            <th>Calories</th>
+                                            <th>Carbs</th>
+                                            <th>Proteins</th>
+                                            <th>Fats</th>
+                                
                                         </tr>
-                                    {% endfor %}
-                                </table>
+                                        {% for food in snacks %}
+                                            <tr>
+                                                <td>{{food.item}}</td>
+                                                <td>{{food.calories}}</td>
+                                                <td>{{food.carbs}}</td>
+                                                <td>{{food.proteins}}</td>
+                                                <td>{{food.fats}}</td>
+                                
+                        
+                                            </tr>
+                                        {% endfor %}
+                                    </table>
                                 </div>
                             </div>
                         </div>
@@ -133,61 +174,32 @@
             </div>
         </div>
 
-        <div class="col-md-6">
-            <div class="row">
-                <div class="col">
-                    <div class="col-md">
-                        <div class="card text-white mb-3">
-                            <div class="card-header food-header4" >
-                                <img src="{% static '/images/snacks.png' %}" id="logo">
-                                <h5 class="card-title text-data">Snacks</h5>
-                            </div>
-                            <div class="card-body">
-                                <table class="table table-sm">
-                                    <tr>
-                                        <th>Item</th>
-                                        <th>Calories</th>
-                                        <th>Carbs</th>
-                                        <th>Proteins</th>
-                                        <th>Fats</th>
-                            
-                                    </tr>
-                                    {% for food in snacks %}
-                                        <tr>
-                                            <td>{{food.item}}</td>
-                                            <td>{{food.calories}}</td>
-                                            <td>{{food.carbs}}</td>
-                                            <td>{{food.proteins}}</td>
-                                            <td>{{food.fats}}</td>
-                            
-                    
-                                        </tr>
-                                    {% endfor %}
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <div class="row">
+            <div class="col-md-6">
+                <canvas id="myChart" width="100" height="100" data-url="{% url 'bar' %}"></canvas>
+            </div>
+            <div class="col-md-6">
+                {% include 'cc/chart.html' %}
             </div>
         </div>
-    </div>
 
-    <div class="row">
-        <div class="col-md-6">
-            <canvas id="myChart" width="100" height="100" data-url="{% url 'bar'  request.user.customer.id %}"></canvas>
-        </div>
-        <div class="col-md-6">
-            {% include 'cc/chart.html' %}
-        </div>
-    </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.4.1/chart.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="{% static 'js/bar.js' %}"></script>
 
-    <!-- <canvas id="myChart" width="100" height="100" data-url="{% url 'bar'  request.user.customer.id %}"></canvas> -->
+    </div>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.4.1/chart.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script src="{% static 'js/bar.js' %}"></script>
 
-<!-- <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script> -->
+
+<script>
+    function showChart(){
+      document.getElementById('mychart').style.display='block';
+    }
+</script>
+
 
 
 {% endblock %}
+
+<!-- <canvas id="myChart" width="100" height="100" data-url="{% url 'bar'  request.user.customer.id %}"></canvas>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>  -->
