@@ -7,8 +7,8 @@
         <form method="POST" id="getDate" >
             {% csrf_token %}
                 <span style="font-family: sans-serif;">Enter date </span>
-                <input type="text" class="input-box" id="date-input" placeholder="MM/DD/YYYY" name="date" >
-                <input class="btn btn-sm btn-outline-primary submit-btn" type="submit" value="Submit" onclick="showChart()">
+                <input type="date" class="input-box" id="date-input" placeholder="DD/MM/YYYY" name="date" onclick="show()" value={{date}}>
+                <input class="btn btn-sm btn-outline-primary submit-btn" type="submit" value="Submit" disabled = false onclick="showChart()">
         </form>
     </div>
 
@@ -193,15 +193,26 @@
 </div>
 
 <script>
+
     function showChart(){
         document.getElementById('myChart').style.display='block';
-        var x;
-        x = document.getElementById("date-input").value;
-        if (x == "") {
-            alert("Enter a Valid Date");
-            return false;
-        };
     }
+    
+    //disabling submit button unless input field filled
+    $(document).ready(function (){
+        validate();
+        $('#date-input').change(validate);
+    });
+
+    function validate(){
+        if ($('#date-input').val().length   >   0 ){
+            $("input[type=submit]").prop("disabled", false);
+        }
+        else {
+            $("input[type=submit]").prop("disabled", true);
+        }
+    }
+    
 </script>
 
 
