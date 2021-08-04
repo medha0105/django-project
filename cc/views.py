@@ -9,6 +9,7 @@ from .caloriecalc import dummycalc
 from .decorators import unauthenticated_user
 from datetime import date
 from django.http import JsonResponse
+from django.forms import formset_factory
 
 
 def about(request):
@@ -148,7 +149,9 @@ def profilePage(request, pk):
 def dailyDetails(request, pk):
     customer = Customer.objects.get(id=pk)
     context = {}
-
+    
+        
+    
     if request.method == "POST":
         date = request.POST.get('date')
         if date != "":
@@ -224,6 +227,6 @@ def barchart(request):
         'data': data,
     })
 
-    
+
   
    

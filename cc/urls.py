@@ -12,4 +12,5 @@ urlpatterns = [
     path('profile/<str:pk>/', views.profilePage, name="profile_page"),
     path('daily_details/<str:pk>', views.dailyDetails,name="daily_details"),
     path('barchart/', views.barchart, name="bar")
+
 ]
