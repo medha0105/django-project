@@ -154,35 +154,34 @@ def dailyDetails(request, pk):
     
     if request.method == "POST":
         date = request.POST.get('date')
-        if date != "":
-            
-            separateDate = date.split('/')
-            foodItems = customer.food_set.all()
-            foodItems = foodItems.filter(date_created__year=separateDate[2],date_created__month=separateDate[0],date_created__day=separateDate[1])
-            print(foodItems)
+        separateDate = date.split('-')
+        # print(separateDate)
+        foodItems = customer.food_set.all()
+        foodItems = foodItems.filter(date_created__year=separateDate[0],date_created__month=separateDate[1],date_created__day=separateDate[2])
+        # print(foodItems)
 
-            breakfast = foodItems.filter(food_category="Breakfast")
-            lunch = foodItems.filter(food_category="Lunch")
-            snacks = foodItems.filter(food_category="Snacks")
-            dinner = foodItems.filter(food_category="Dinner")
+        breakfast = foodItems.filter(food_category="Breakfast")
+        lunch = foodItems.filter(food_category="Lunch")
+        snacks = foodItems.filter(food_category="Snacks")
+        dinner = foodItems.filter(food_category="Dinner")
 
-            data = []
-            calorieConsumed=0
-            pieCarbs=0
-            pieProteins=0
-            pieFats=0
-            for item in foodItems:
-                calorieConsumed += item.calories
-                pieCarbs += item.carbs
-                pieProteins += item.proteins
-                pieFats += item.fats  
-            data.append(calorieConsumed)
-            data.append(pieCarbs)
-            data.append(pieProteins)
-            data.append(pieFats)
+        data = []
+        calorieConsumed=0
+        pieCarbs=0
+        pieProteins=0
+        pieFats=0
+        for item in foodItems:
+            calorieConsumed += item.calories
+            pieCarbs += item.carbs
+            pieProteins += item.proteins
+            pieFats += item.fats  
+        data.append(calorieConsumed)
+        data.append(pieCarbs)
+        data.append(pieProteins)
+        data.append(pieFats)
 
-            context = {'breakfast':breakfast,'lunch':lunch,'snacks':snacks,'dinner':dinner,
-            'calorieConsumed':calorieConsumed,'data':data}
+        context = {'breakfast':breakfast,'lunch':lunch,'snacks':snacks,'dinner':dinner,
+        'calorieConsumed':calorieConsumed,'data':data, 'date':date}
 
     global sendData
     def sendData():
