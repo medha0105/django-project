@@ -41,7 +41,7 @@ class Food(models.Model):
     fats = models.FloatField(null=True)
     # weight = models.FloatField(null=True)
     food_category = models.CharField(max_length=40,null=True,choices=FOOD_CATEGORY)
-    customer = models.ForeignKey(Customer,null=True,on_delete=models.SET_NULL)
+    customer = models.ForeignKey(Customer,null=True,on_delete=models.CASCADE)
     date_created = models.DateTimeField(auto_now_add = True,null = True)
 
     def __str__(self):

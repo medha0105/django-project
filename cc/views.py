@@ -1,3 +1,4 @@
+from django.db.models import query
 from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -7,6 +8,7 @@ from .models import *
 from .forms import *
 from .caloriecalc import dummycalc
 from .decorators import unauthenticated_user
+from .filters import FoodFilter
 from datetime import date
 from django.http import JsonResponse
 from django.forms import formset_factory
@@ -150,12 +152,10 @@ def dailyDetails(request, pk):
     customer = Customer.objects.get(id=pk)
     context = {}
     
-        
-    
     if request.method == "POST":
         date = request.POST.get('date')
         separateDate = date.split('-')
-        # print(separateDate)
+        print(separateDate)
         foodItems = customer.food_set.all()
         foodItems = foodItems.filter(date_created__year=separateDate[0],date_created__month=separateDate[1],date_created__day=separateDate[2])
         # print(foodItems)
@@ -190,6 +190,7 @@ def dailyDetails(request, pk):
     return render(request,'cc/daily_details.html',context)
 
 
+@login_required(login_url = 'login')
 def barchart(request):
     labels = []
     data = []
@@ -227,5 +228,20 @@ def barchart(request):
     })
 
 
+def search(request):
+
+    if request.method == 'POST':
+        food_item = request.POST.get('foodItem')
+        present = Food.objects.filter(item=food_item)
+        print(present)
+        if present.count() == 0:
+            return render(request, 'cc/search.html', {'alert_flag': True})
+        else:
+            print("Not empty")
+
+    food = Food.objects.all()
+    context = {'food': food}
+
+    return render(request, 'cc/search.html', context)
   
    

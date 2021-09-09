@@ -1,6 +1,7 @@
 import django_filters
+from django_filters import CharFilter
 from .models import *
-from django_filters import DateFilter
 
-# class FoodFilter(django_filters.FilterSet):
-#     date = DateFilter(field_name="date_created")
+
+class FoodFilter(django_filters.FilterSet):
+    food = CharFilter(field_name="item", lookup_expr='icontains')

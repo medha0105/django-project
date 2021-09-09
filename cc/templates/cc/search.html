@@ -1,0 +1,30 @@
+{%  extends 'cc/main.html' %}
+{% load static %}
+{% block content %}
+
+
+<form method="POST">
+    {% csrf_token %}
+
+    <input type="text" list="foodItem" name="foodItem" required autocomplete="off">  
+    <datalist id="foodItem">  
+
+    {% for f in food %}
+    <option value={{f}}></option>
+    {% endfor %}
+
+    </datalist>
+
+    <input class="btn btn-sm btn-outline-primary submit-btn" type="submit" value="Submit">
+
+</form> 
+
+{% if alert_flag %}
+    <script>
+        if(window.confirm("Sorry!! We dont know the exact nutrient contents in this food item. Would you like to add the nutrients manually?")){
+            window.location.href = "{% url 'food_details' request.user.customer.id 1 %}";
+        }
+    </script>  
+{% endif %}
+
+{% endblock %}
